@@ -1,0 +1,22 @@
+import selenium
+# coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+driver = webdriver.Chrome('/Users/chanpohung/Desktop/chromedriver')
+driver.get("http://mops.twse.com.tw/mops/web/t51sb02_q1")
+driver_input = driver.find_element_by_xpath('//*[@id="year"]')
+driver_input.send_keys('106')
+driver_input.send_keys(Keys.ENTER)
+
+time.sleep(10)
+
+for i in range(110):
+    for j in range(15):
+        if 3 + 17*i + j <= 1068:
+            table_text = driver_input.find_element_by_xpath('//*[@id="table01"]/table[3]/tbody/tr[' + str(3 + 17*i + j) + ']').text
+            print(table_text)
+        else:
+            break
+#driver.close()
