@@ -40,15 +40,16 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-com_num = input("company number :")
-com_num = com_num.split(' ')
-driver = webdriver.Chrome('D:\download\chromedriver_win32\chromedriver')
+#com_num = input("company number :")
+#com_num = com_num.split(' ')
+driver = webdriver.Chrome(r"C:\Users\User\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Python 3.7\chromedriver.exe")
 driver.get("http://mops.twse.com.tw/mops/web/t05st22_q1")
 #driver_input = driver.find_element_by_xpath('//*[@id="co_id"]')
 #driver_input.send_keys(1101)
 #driver.execute_script("doAction();ajax1(document.form1,'table01');")
 #time.sleep(2)
 a_list = []
+com_num = [2542]
 for i in com_num:
     print(i)
     driver_input = driver.find_element_by_xpath('//*[@id="co_id"]')  #
