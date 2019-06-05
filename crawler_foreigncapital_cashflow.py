@@ -5,7 +5,7 @@ import time
 co_id = input("輸入四位數股票代號: ")  # 輸入四位數股票代號
 
 from selenium.webdriver.common.keys import Keys #模擬鍵盤操作
-browser = webdriver.Chrome('/Users/chanpohung/Desktop/chromedriver')
+browser = webdriver.Chrome('/Users/chanpohung/Documents/chromedriver')
 url = "https://goodinfo.tw/StockInfo/StockBzPerformance.asp?STOCK_ID="
 url += co_id
 browser.get(url)
@@ -96,16 +96,14 @@ p2_up_rank = []
 for key in index:
     while '-' in index[key]:
         index[key].remove('-')
-    if index[key] != []:
-        p2_up_targetstock = index[key][0]  # 得到最新的資料以便之後排名用
-        index[key].sort()  # 把獲取的資料排序
-        if key == '淨值比(PBR)' or key == '本益比(PER)':
-            pass
-        else:
-            index[key].reverse()
-        p2_up_rank.append(str(index[key].index(p2_up_targetstock) + 1) + '/' + str(len(index[key])))
+
+    p2_up_targetstock = index[key][0]  # 得到最新的資料以便之後排名用
+    index[key].sort()  # 把獲取的資料排序
+    if key == '淨值比(PBR)' or key == '本益比(PER)':
+        pass
     else:
-        print('無資料：' + str(key))
+        index[key].reverse()
+    p2_up_rank.append(str(index[key].index(p2_up_targetstock) + 1) + '/' + str(len(index[key])))
 print('===第二部分上半部照順序的排名===')
 print(p2_up_rank)
 print('======')
