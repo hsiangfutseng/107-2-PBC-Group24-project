@@ -1,0 +1,58 @@
+import tkinter as tk
+
+class Window(tk.Frame):
+
+    def __init__(self):
+        tk.Frame.__init__(self)
+        self.grid()
+        self.create_widgets()
+
+    def create_widgets(self):
+
+    #Build Object/建立物件
+        self.stuck_number = tk.Text(self, height = 2, width = 16)
+        self.company_name = tk.Label(self, height=4, width=48, bg='skyblue', text="")
+        self.blank1 = tk.Label(self, height=2, width=48, text="")
+        self.bar_chart = tk.Label(self, height=10, width=48, bg='blue', text="")
+        self.blank2 = tk.Label(self, height=2, width=48, text="")
+        self.profitability = tk.Label(self, height=6, width=58, bg='red', text="")
+        self.fin_structure = tk.Label(self, height=6, width=58, bg='red', text="")
+        self.profitability2 = tk.Label(self, height=6, width=58, bg='red', text="")
+        self.rank = tk.Label(self, height=22, width=16, bg='lightsteelblue', text="各\n項\n排\n名")
+        self.total_scores = tk.Label(self, height=4, width=60, bg='red', text="")
+        self.stuck_number2 = tk.Text(self, height=2, width=30)
+        self.total_points = tk.Label(self, height=4, width=16, bg='blue', text="")
+        self.turnover = tk.Label(self, height=6, width=60, bg='blue', text="")
+        self.txt = tk.Label(self, height=2, width=60, bg='blue', text="")
+        self.management_capacity = tk.Label(self, height=6, width=70, bg='red', text="")
+        self.debt = tk.Label(self, height=6, width=35, bg='blue', text="")
+        self.others = tk.Label(self, height=6, width=70, bg='red', text="")
+        self.cash_flow = tk.Label(self, height=6, width=35, bg='blue', text="")
+        self.final_rank = tk.Label(self, height=6, width=42, bg='blue', text="")
+        self.btn1 = tk.Button(self, height=4, width=32, text="Btn1")
+        self.btn2 = tk.Button(self, height=6, width=32, text="Btn2")
+    #Assign Position/指定位置
+        self.stuck_number.grid(row=1, column=0, sticky=tk.W)
+        self.company_name.grid(row=3, column=0,sticky=tk.W)
+        self.blank1.grid(row=4, column=0,sticky=tk.W)
+        self.bar_chart.grid(row=5, column=0,sticky=tk.W)
+        self.blank2.grid(row=6, column=0,sticky=tk.W)
+        self.rank.grid(row=7,column=0,rowspan=5,sticky=tk.W)
+        self.fin_structure.grid(row=7, column=0, sticky=tk.NW)
+        self.profitability.grid(row=9, column=0,sticky=tk.W)
+        self.profitability2.grid(row=11, column=0, sticky=tk.SW)
+        self.total_points.grid(row=3, column=2, sticky=tk.W)
+        self.total_scores.grid(row=3, column=2, sticky=tk.W)
+        self.stuck_number2.grid(row=1, column=2,columnspan=1, sticky=tk.W)
+        self.turnover.grid(row=5, column=2, sticky=tk.NW)
+        self.txt.grid(row=5, column=2, sticky=tk.SW)
+        self.debt.grid(row=7, column=2, sticky=tk.NW)
+        self.management_capacity.grid(row=7, column=2, sticky=tk.NW)
+        self.cash_flow.grid(row=9, column=2, sticky=tk.W)
+        self.others.grid(row=9, column=2, sticky=tk.W)
+        self.final_rank.grid(row=11, column=2, sticky=tk.SW)
+        self.btn1.grid(row=1, column=3,sticky=tk.S)
+        self.btn2.grid(row=11, column=3, sticky=tk.S)
+mywindow = Window()
+mywindow.master.title("my window")
+mywindow.mainloop()
