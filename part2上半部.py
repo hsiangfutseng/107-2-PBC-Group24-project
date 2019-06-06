@@ -95,5 +95,26 @@ for key in index:
 	print(key, index[key])
 
 
+browser.close()
 
-# browser.close()
+#整理排序
+p2_up_rank = []
+for key in index:
+	#如果主角是"-", 那個指標就不列入
+	if index[key][0] == '-':
+		p2_up_rank.append("na")
+		break
+
+	while '-' in index[key]:
+		index[key].remove('-')
+
+	p2_up_targetstock = index[key][0]  # 得到最新的資料以便之後排名用
+	index[key].sort()  # 把獲取的資料排序
+	if key == '淨值比(PBR)' or key == '本益比(PER)':
+		pass
+	else:
+		index[key].reverse()
+	p2_up_rank.append(str(index[key].index(p2_up_targetstock) + 1) + '/' + str(len(index[key])))
+print('===第二部分上半部照順序的排名===')
+print(p2_up_rank)
+print('======')
