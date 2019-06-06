@@ -13,3 +13,13 @@ driver.find_element_by_xpath("//input[@id='year']").send_keys('101')
 #換行\n 有按Enter鍵功能
 
 driver.find_element_by_xpath("//form[@id='form1']/table/tbody/tr/td[4]/table//tr/td[2]/div/div[@class='search']/input[@value=' 查詢 ']").click() 
+
+import time
+time.sleep(30) 
+
+soup = BeautifulSoup(driver.page_source)
+for element in soup.select('even'):
+	print(element.text)
+
+
+
