@@ -27,40 +27,43 @@ files_name = ["負債佔資產比率", "長期資金佔不動產廠房及設備�
 
 #爬資料
 for i in companys:
+    s = Select(driver.find_element_by_id('isnew'))     #選取滾輪
+    s.select_by_visible_text("歷史資料")
+    #選取滾輪標籤中的(...)
     driver_input = driver.find_element_by_xpath('//*[@id="co_id"]')
     driver_input.send_keys(i)     #輸入公司代號
+    driver.find_element_by_xpath("//input[@id='year']").send_keys("107")     #"年分"輸入104年(因為一次只能獲取前3年的資料)
     driver.find_element_by_xpath("//td[@class='bar01b']//td[2]//div[1]//div[1]//input[1]").click()     #點擊搜尋鍵
-    time.sleep(2)
+    time.sleep(1)
     years_data_dict[i] = dict()
     for j in range(1, 4):
-        years_data_dict[i][j+104] = []
+        years_data_dict[i][j+2015] = []
         for k in range(2, 21):
             information = driver.find_element_by_xpath("//div[@id='zoom']/div/center[2]/table/tbody/tr[" + str(k) + "]/td[" + str(j) + "]").text
             if information != "NA":
                 try:
-                    years_data_dict[i][j+104] += [float("".join(information.strip().split(',')))]     #整理資料並轉換成float
+                    years_data_dict[i][j+2015] += [float("".join(information.strip().split(',')))]     #整理資料並轉換成float
                 except Exception as inst:
-                    years_data_dict[i][j+104] += ["".join(information.strip().split(','))]
+                    years_data_dict[i][j+2015] += ["".join(information.strip().split(','))]
     #字串元素：float
     driver.find_element_by_xpath('//*[@id="co_id"]').click()     #點擊"輸入公司代號之輸入格" -> 消除原先輸入的值
 
-for i in companys:
     s = Select(driver.find_element_by_id('isnew'))     #選取滾輪
     s.select_by_visible_text("歷史資料")
     #選取滾輪標籤中的(...)
     driver_input.send_keys(i)
     driver.find_element_by_xpath("//input[@id='year']").send_keys("104")     #"年分"輸入104年(因為一次只能獲取前3年的資料)
     driver.find_element_by_xpath("//td[@class='bar01b']//td[2]//div[1]//div[1]//input[1]").click()
-    time.sleep(2)
+    time.sleep(1)
     for j in range(1, 4):
-        years_data_dict[i][j+101] = [] 
+        years_data_dict[i][j+2012] = [] 
         for k in range(2, 21):
             information = driver.find_element_by_xpath("//div[@id='zoom']/div/center[2]/table/tbody/tr[" + str(k) + "]/td[" + str(j) + "]").text
             if information != "NA":
                 try:
-                    years_data_dict[i][j+101] += [float("".join(information.strip().split(',')))]
+                    years_data_dict[i][j+2012] += [float("".join(information.strip().split(',')))]
                 except Exception as inst:
-                    years_data_dict[i][j+101] += ["".join(information.strip().split(','))]
+                    years_data_dict[i][j+2012] += ["".join(information.strip().split(','))]
     #字串元素：float
     driver.find_element_by_xpath('//*[@id="co_id"]').click()
 
@@ -68,8 +71,8 @@ for i in companys:
 p1_down_rank = []
 objective_company = companys[0]
 for files in range(19):     #files = "負債佔資產比率","長期資金佔不動產廠房及設備比率","流動比率"...
-    if isinstance(years_data_dict[objective_company][107][files],float):
-        p1_down_targetstock = years_data_dict[objective_company][107][files]     #得到最新的各資料以便之後排名用
+    if isinstance(years_data_dict[objective_company][2018][files],float):
+        p1_down_targetstock = years_data_dict[objective_company][2018][files]     #得到最新的各資料以便之後排名用
     else:
         print('無資料：' + files_name[files])
         p1_down_rank.append("NA")
@@ -78,8 +81,8 @@ for files in range(19):     #files = "負債佔資產比率","長期資金佔不
     the_flie = []
     
     for company in companys:     #107年各公司資料
-        if isinstance(years_data_dict[company][107][files],float):
-            the_flie.append(years_data_dict[company][107][files])
+        if isinstance(years_data_dict[company][2018][files],float):
+            the_flie.append(years_data_dict[company][2018][files])
     organized_the_flie = sorted(the_flie)    #把獲取的資料排序
     
     if files == 7 or files == 9:     #"平均收現日數" 和 "平均銷貨日數" 越低越好
@@ -97,10 +100,10 @@ print('======')
 p2_down_rank = []
 objective_company = companys[0]
 for files in range(19):     #files = "負債佔資產比率","長期資金佔不動產廠房及設備比率","流動比率"...
-    if isinstance(years_data_dict[objective_company][107][files],float):
-        p2_down_targetstock = years_data_dict[objective_company][107][files]     #得到最新的各資料以便之後排名用
+    if isinstance(years_data_dict[objective_company][2018][files],float):
+        p2_down_targetstock = years_data_dict[objective_company][2018][files]     #得到最新的各資料以便之後排名用
     the_flie = []
-    for over_the_years in range(102, 108):     #over_the_years = 102年 到 107年
+    for over_the_years in range(2013, 2019):     #over_the_years = 102年 到 107年
         if isinstance(years_data_dict[objective_company][over_the_years][files],float):
             the_flie.append(years_data_dict[objective_company][over_the_years][files])
     organized_the_flie = sorted(the_flie)    #把獲取的資料排序
