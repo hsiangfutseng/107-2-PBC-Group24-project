@@ -872,27 +872,27 @@ class Window1(tk.Frame):
 
         self.barchart()
 
-		self.imageMain = ImageTk.PhotoImage(file = "D:\\商管程式設計\\期末project\\temp.png") #path要改
-		self.bar_chart.create_image(200, 300, image = self.imageMain, 
-		anchor = tk.NW) # anchor 設定顯示位置
-		os.remove("D:\\商管程式設計\\期末project\\temp.png") #path要改
+        self.imageMain = ImageTk.PhotoImage(file = "D:\\商管程式設計\\期末project\\temp.png") #path要改
+        self.bar_chart.create_image(200, 300, image = self.imageMain, 
+        anchor = tk.NW) # anchor 設定顯示位置
+        os.remove("D:\\商管程式設計\\期末project\\temp.png") #path要改
 
-	def barchart(self):
-		pyplot.title("Scores of 3 Indicator")
-		pyplot.xlabel("Scores")
-		indicator = ("Indicator 1", "Indicator 2", "Indicator 3")
-		width = 0.35
+    def barchart(self):
+        pyplot.title("Scores of 3 Indicator")
+        pyplot.xlabel("Scores")
+        indicator = ("Indicator 1", "Indicator 2", "Indicator 3")
+        width = 0.35
 
-		pyplot.barh(indicator, scrList, align = "center")
+        pyplot.barh(indicator, scrList, align = "center")
 
-		# pyplot.show()
-		pyplot.savefig("D:\\商管程式設計\\期末project\\temp.png", dpi = 50) # dpi太多會爆 #path要改
+        # pyplot.show()
+        pyplot.savefig("D:\\商管程式設計\\期末project\\temp.png", dpi = 50) # dpi太多會爆 #path要改
 
-	scrList = [30, 40, 20]  # 這邊輸入分數
+    scrList = [30, 40, 20]  # 這邊輸入分數
 
-	H1 = barchart()
-	H1.master.title("Histogram")
-	H1.mainloop()
+    H1 = barchart()
+    H1.master.title("Histogram")
+    H1.mainloop()
 
 class Window2(tk.Frame):
 
