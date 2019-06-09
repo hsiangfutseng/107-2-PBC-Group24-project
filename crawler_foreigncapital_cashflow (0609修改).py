@@ -796,6 +796,11 @@ class Window1(tk.Frame):
         self.btn2.grid(row=12, column=0, sticky=tk.NW)
 
     """用按鈕觸發新視窗的函數"""
+    def run_secondpage(self):
+        self.destroy()
+        secondpage = Window2()
+        secondpage.master.title("secondpage")
+        secondpage.mainloop()
 
     def run_btn1(self):
         self.co_id = self.stuck_number.get('1.0', tk.END)
@@ -868,7 +873,8 @@ class Window1(tk.Frame):
         self.barchart()
 
         self.imageMain = ImageTk.PhotoImage(file = "D:\\商管程式設計\\期末project\\temp.png") #path要改
-        self.bar_chart.create_image(200, 300, image = self.imageMain,anchor = tk.NW) # anchor 設定顯示位置
+        self.bar_chart.create_image(200, 300, image = self.imageMain, 
+        anchor = tk.NW) # anchor 設定顯示位置
         os.remove("D:\\商管程式設計\\期末project\\temp.png") #path要改
 
     def barchart(self):
@@ -884,6 +890,9 @@ class Window1(tk.Frame):
 
     scrList = [30, 40, 20]  # 這邊輸入分數
 
+    H1 = barchart()
+    H1.master.title("Histogram")
+    H1.mainloop()
 
 class Window2(tk.Frame):
 
@@ -1100,150 +1109,9 @@ class Window2(tk.Frame):
     """用按鈕觸發新視窗的函數"""
     def run_mainpage(self):
         self.destroy()
-        mainpage = Window3()
+        mainpage = Window1()
         mainpage.master.title("mainpage")
         mainpage.mainloop()
-
-class Window3(tk.Frame):
-
-    def __init__(self):
-        tk.Frame.__init__(self)
-        self.grid()
-        self.create_widgets3()
-
-    def create_widgets1(self):
-        font1 = tkFont.Font(size=24, family= 'CourierNew')
-        font2 = tkFont.Font(size=18, family='CourierNew')
-    #Build Object/建立物件
-        self.stuck_number = tk.Text(self, height = 2, width = 16)
-        self.company_name = tk.Label(self, height=4, width=48, bg='lightsteelblue', text="")
-        self.blank1 = tk.Label(self, height=2, width=48, text="")
-        self.bar_chart = tk.Label(self, height=10, width=48, bg='lightsteelblue', text="")
-        self.blank2 = tk.Label(self, height=2, width=48, text="")
-        self.profitability = tk.Label(self, height=6, width=58, bg='LightSalmon', text="\t\t獲利能力\n\t\t------------------------------\n\t\t產業              期間\n\n\t\t1/k               3/n")
-        self.fin_structure = tk.Label(self, height=6, width=58, bg='LightSalmon', text="\t\t財務結構\n\t\t------------------------------\n\t\t產業              期間\n\n\t\t1/k               3/n")
-        self.profitability2 = tk.Label(self, height=6, width=58, bg='LightSalmon', text="\t\t獲利能力\n\t\t------------------------------\n\t\t短\t中\t長\n\n\t\t1/k\t3/k\t1\k")
-        self.rank = tk.Label(self, height=11, width=9, bg='lightsteelblue', text="各\n項\n排\n名",font = font1)
-        self.total_scores = tk.Label(self, height=2, width=34, bg='LightSalmon', text="\t66",font=font1)
-        self.stuck_number2 = tk.Text(self, height=2, width=30)
-        self.total_points = tk.Label(self, height=2, width=8, bg='lightsteelblue', text="總分",font = font1)
-        self.turnover = tk.Label(self, height=4, width=34, bg='lightsteelblue', text= "營業額:xxx億\n資本額:xxx億\n所屬產業類別:xxx產業",font=font1)
-        self.txt = tk.Label(self, height=1, width=34, bg='lightsteelblue', text="文字",font=font1)
-        self.management_capacity = tk.Label(self, height=6, width=60, bg='LightSalmon', text="\t\t\t\t   經營能力\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   1/k               3/n")
-        self.debt = tk.Label(self, height=6, width=30, bg='bisque', text="債償能力\n------------------------------\n產業              期間\n\n1/k               3/n")
-        self.others = tk.Label(self, height=6, width=60, bg='LightSalmon', text="\t\t\t\t   其他指標\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   1/k               3/n")
-        self.cash_flow = tk.Label(self, height=6, width=30, bg='bisque', text="現金流量\n------------------------------\n產業              期間\n\n1/k               3/n")
-        self.final_rank = tk.Label(self, height=6, width=30, bg='bisque', text="總排名\n------------------------------\n產業              期間\n\n1/k               3/n")
-        self.btn2 = tk.Button(self, height=3, width=16, text="NEXT PAGE", command= self.run_secondpage) # 觸發視窗
-    #Assign Position/指定位置
-        self.stuck_number.grid(row=1, column=0, sticky=tk.W)
-        self.company_name.grid(row=3, column=0,sticky=tk.W)
-        self.blank1.grid(row=4, column=0,sticky=tk.W)
-        self.bar_chart.grid(row=5, column=0,sticky=tk.W)
-        self.blank2.grid(row=6, column=0,sticky=tk.W)
-        self.rank.grid(row=7,column=0,rowspan=5,sticky=tk.W)
-        self.fin_structure.grid(row=7, column=0, sticky=tk.NW)
-        self.profitability.grid(row=9, column=0,sticky=tk.W)
-        self.profitability2.grid(row=11, column=0, sticky=tk.SW)
-        self.total_points.grid(row=3, column=2, sticky=tk.W)
-        self.total_scores.grid(row=3, column=2, sticky=tk.W)
-        self.stuck_number2.grid(row=1, column=2,columnspan=1, sticky=tk.W)
-        self.turnover.grid(row=5, column=2, sticky=tk.NW)
-        self.txt.grid(row=5, column=2, sticky=tk.SW)
-        self.debt.grid(row=7, column=2, sticky=tk.NW)
-        self.management_capacity.grid(row=7, column=2, sticky=tk.NW)
-        self.cash_flow.grid(row=9, column=2, sticky=tk.W)
-        self.others.grid(row=9, column=2, sticky=tk.W)
-        self.final_rank.grid(row=11, column=2, sticky=tk.SW)
-        self.btn2.grid(row=12, column=0, sticky=tk.NW)
-
-
-        k = Crawel()
-        k.get_crawler()
-
-        font1 = tkFont.Font(size=24, family='CourierNew')
-        # Build Object/建立物件
-        self.stuck_number = tk.Text(self, height=2, width=16)
-        self.company_name = tk.Label(self, height=4, width=48, bg='lightsteelblue', text=self.co_id + k.co_name_f)
-        self.blank1 = tk.Label(self, height=2, width=48, text="")
-        self.bar_chart = tk.Label(self, height=10, width=48, bg='lightsteelblue', text="")
-        self.blank2 = tk.Label(self, height=2, width=48, text="")
-        self.profitability = tk.Label(self, height=6, width=58, bg='LightSalmon',
-                                      text="\t\t獲利能力\n\t\t------------------------------\n\t\t產業              期間\n\n\t\t"
-                                           +k.p1_earning_sum_point_f+"               "+k.p2_earning_sum_point_f)
-        self.fin_structure = tk.Label(self, height=6, width=58, bg='LightSalmon',
-                                      text="\t\t財務結構\n\t\t------------------------------\n\t\t產業              期間\n\n\t\t"
-                                           +k.p1_finance_sum_point_f+"               "+k.p2_finance_sum_point_f)
-        self.profitability2 = tk.Label(self, height=6, width=58, bg='LightSalmon',
-                                       text="\t\t外資持股比率\n\t\t------------------------------\n\t\t短\t中\t長\n\n\t\t"
-                                            +k.p3_point_s+"\t"+k.p3_point_m+"\t"+k.p3_point_l)
-        self.rank = tk.Label(self, height=11, width=9, bg='lightsteelblue', text="各\n項\n排\n名", font=font1)
-        self.total_scores = tk.Label(self, height=2, width=34, bg='LightSalmon', text="\t"+str(k.final_sum_point_f), font=font1)
-        self.stuck_number2 = tk.Text(self, height=2, width=30)
-        self.total_points = tk.Label(self, height=2, width=8, bg='lightsteelblue', text="總分", font=font1)
-        self.turnover = tk.Label(self, height=4, width=34, bg='LightSalmon', text=k.revenue_f+"\n"+k.capitalamount_f+"\n"+k.industry_f,
-                                 font=font1)
-        self.txt = tk.Label(self, height=1, width=34, bg='LightSalmon', text=k.company_status_f, font=font1)
-        self.management_capacity = tk.Label(self, height=6, width=60, bg='LightSalmon',
-                                            text="\t\t\t\t   經營能力\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   "
-                                                 +k.p1_business_sum_point_f+"               "+k.p2_business_sum_point_f)
-        self.debt = tk.Label(self, height=6, width=30, bg='bisque',
-                             text="債償能力\n------------------------------\n產業              期間\n\n1"
-                                  +k.p1_payback_sum_point_f+"               "+k.p2_payback_sum_point_f)
-        self.others = tk.Label(self, height=6, width=60, bg='LightSalmon',
-                               text="\t\t\t\t   其他指標\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   "
-                                    +k.p1_other_sum_point_f+"               "+k.p2_other_sum_point_f)
-        self.cash_flow = tk.Label(self, height=6, width=30, bg='bisque',
-                                  text="現金流量\n------------------------------\n產業              期間\n\n"
-                                       +k.p1_cashflow_sum_point_f+"               "+k.p2_cashflow_sum_point_f)
-        self.final_rank = tk.Label(self, height=6, width=30, bg='bisque',
-                                   text="總排名\n------------------------------\n產業              期間\n\n"
-                                        +k.sum_p1_point_f+"               "+k.sum_p2_point_f)
-
-        # Assign Position/指定位置
-        self.stuck_number.grid(row=1, column=0, sticky=tk.W)
-        self.company_name.grid(row=3, column=0, sticky=tk.W)
-        self.blank1.grid(row=4, column=0, sticky=tk.W)
-        self.bar_chart.grid(row=5, column=0, sticky=tk.W)
-        self.blank2.grid(row=6, column=0, sticky=tk.W)
-        self.rank.grid(row=7, column=0, rowspan=5, sticky=tk.W)
-        self.fin_structure.grid(row=7, column=0, sticky=tk.NW)
-        self.profitability.grid(row=9, column=0, sticky=tk.W)
-        self.profitability2.grid(row=11, column=0, sticky=tk.SW)
-        self.total_points.grid(row=3, column=2, sticky=tk.W)
-        self.total_scores.grid(row=3, column=2, sticky=tk.W)
-        self.stuck_number2.grid(row=1, column=2, columnspan=1, sticky=tk.W)
-        self.turnover.grid(row=5, column=2, sticky=tk.NW)
-        self.txt.grid(row=5, column=2, sticky=tk.SW)
-        self.debt.grid(row=7, column=2, sticky=tk.NW)
-        self.management_capacity.grid(row=7, column=2, sticky=tk.NW)
-        self.cash_flow.grid(row=9, column=2, sticky=tk.W)
-        self.others.grid(row=9, column=2, sticky=tk.W)
-        self.final_rank.grid(row=11, column=2, sticky=tk.SW)
-
-        self.barchart()
-
-        self.imageMain = ImageTk.PhotoImage(file = "D:\\商管程式設計\\期末project\\temp.png") #path要改
-        self.bar_chart.create_image(200, 300, image = self.imageMain,anchor = tk.NW) # anchor 設定顯示位置
-        os.remove("D:\\商管程式設計\\期末project\\temp.png") #path要改
-
-    def barchart(self):
-        pyplot.title("Scores of 3 Indicator")
-        pyplot.xlabel("Scores")
-        indicator = ("Indicator 1", "Indicator 2", "Indicator 3")
-        width = 0.35
-
-        pyplot.barh(indicator, scrList, align = "center")
-
-        # pyplot.show()
-        pyplot.savefig("D:\\商管程式設計\\期末project\\temp.png", dpi = 50) # dpi太多會爆 #path要改
-
-    scrList = [30, 40, 20]  # 這邊輸入分數
-    def run_secondpage(self):
-        self.destroy()
-        secondpage = Window2()
-        secondpage.master.title("secondpage")
-        secondpage.mainloop()
 
 
 mainpage = Window1()
