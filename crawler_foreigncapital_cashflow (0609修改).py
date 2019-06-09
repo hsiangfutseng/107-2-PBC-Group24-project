@@ -824,25 +824,30 @@ class Window1(tk.Frame):
                                       text="\t\t財務結構\n\t\t------------------------------\n\t\t產業              期間\n\n\t\t"
                                            +k.p1_finance_sum_point_f+"               "+k.p2_finance_sum_point_f)
         self.profitability2 = tk.Label(self, height=6, width=58, bg='LightSalmon',
-                                       text="\t\t獲利能力\n\t\t------------------------------\n\t\t短\t中\t長\n\n\t\t1/k\t3/k\t1\k")
+                                       text="\t\t外資持股比率\n\t\t------------------------------\n\t\t短\t中\t長\n\n\t\t"
+                                            +k.p3_point_s+"\t"+k.p3_point_m+"\t"+k.p3_point_l)
         self.rank = tk.Label(self, height=11, width=9, bg='lightsteelblue', text="各\n項\n排\n名", font=font1)
-        self.total_scores = tk.Label(self, height=2, width=34, bg='LightSalmon', text="\t66", font=font1)
+        self.total_scores = tk.Label(self, height=2, width=34, bg='LightSalmon', text="\t"+str(k.final_sum_point_f), font=font1)
         self.stuck_number2 = tk.Text(self, height=2, width=30)
         self.total_points = tk.Label(self, height=2, width=8, bg='lightsteelblue', text="總分", font=font1)
         self.turnover = tk.Label(self, height=4, width=34, bg='LightSalmon', text=k.revenue_f+"\n"+k.capitalamount_f+"\n"+k.industry_f,
                                  font=font1)
-        self.txt = tk.Label(self, height=1, width=34, bg='LightSalmon', text="文字", font=font1)
+        self.txt = tk.Label(self, height=1, width=34, bg='LightSalmon', text=k.company_status_f, font=font1)
         self.management_capacity = tk.Label(self, height=6, width=60, bg='LightSalmon',
                                             text="\t\t\t\t   經營能力\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   "
                                                  +k.p1_business_sum_point_f+"               "+k.p2_business_sum_point_f)
         self.debt = tk.Label(self, height=6, width=30, bg='bisque',
-                             text="債償能力\n------------------------------\n產業              期間\n\n1/k               3/n")
+                             text="債償能力\n------------------------------\n產業              期間\n\n1"
+                                  +k.p1_payback_sum_point_f+"               "+k.p2_payback_sum_point_f)
         self.others = tk.Label(self, height=6, width=60, bg='LightSalmon',
-                               text="\t\t\t\t   其他指標\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   1/k               3/n")
+                               text="\t\t\t\t   其他指標\n\t\t\t\t   ------------------------------\n\t\t\t\t   產業              期間\n\n\t\t\t\t   "
+                                    +k.p1_other_sum_point_f+"               "+k.p2_other_sum_point_f)
         self.cash_flow = tk.Label(self, height=6, width=30, bg='bisque',
-                                  text="現金流量\n------------------------------\n產業              期間\n\n1/k               3/n")
+                                  text="現金流量\n------------------------------\n產業              期間\n\n"
+                                       +k.p1_cashflow_sum_point_f+"               "+k.p2_cashflow_sum_point_f)
         self.final_rank = tk.Label(self, height=6, width=30, bg='bisque',
-                                   text="總排名\n------------------------------\n產業              期間\n\n1/k               3/n")
+                                   text="總排名\n------------------------------\n產業              期間\n\n"
+                                        +k.sum_p1_point_f+"               "+k.sum_p2_point_f)
 
         # Assign Position/指定位置
         self.stuck_number.grid(row=1, column=0, sticky=tk.W)
