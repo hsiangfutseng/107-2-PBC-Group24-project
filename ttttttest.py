@@ -314,7 +314,7 @@ class Crawel():
                             years_data_dict[i][j + 2015] += [float("".join(information.strip().split(',')))]  # 整理資料並轉換成float
                         except Exception as inst:
                             years_data_dict[i][j + 2015] += ["".join(information.strip().split(','))]
-            # 字串元素：float
+            # 字串元素的整理，格式：float # 把可以轉換成float以外的資料，以string紀錄
             browser.find_element_by_xpath('//*[@id="co_id"]').click()  # 點擊"輸入公司代號之輸入格" -> 消除原先輸入的值
 
             s = Select(browser.find_element_by_id('isnew'))  # 選取滾輪
@@ -334,7 +334,7 @@ class Crawel():
                             years_data_dict[i][j + 2012] += [float("".join(information.strip().split(',')))]
                         except Exception as inst:
                             years_data_dict[i][j + 2012] += ["".join(information.strip().split(','))]
-            # 字串元素：float
+            # 字串元素的整理，格式：float # 把可以轉換成float以外的資料，以string紀錄
             browser.find_element_by_xpath('//*[@id="co_id"]').click()
 
         # 第一部分下半部
@@ -372,20 +372,24 @@ class Crawel():
         for files in range(19):  # files = "負債佔資產比率","長期資金佔不動產廠房及設備比率","流動比率"...
             if isinstance(years_data_dict[objective_company][2018][files], float):
                 p2_down_targetstock = years_data_dict[objective_company][2018][files]  # 得到最新的各資料以便之後排名用
+            else:
+                #print('無資料：' + files_name[files])
+                p2_down_rank.append("NA")
+                continue
+
             the_flie = []
+
             for over_the_years in range(2013, 2019):  # over_the_years = 102年 到 107年
                 if isinstance(years_data_dict[objective_company][over_the_years][files], float):
                     the_flie.append(years_data_dict[objective_company][over_the_years][files])
             organized_the_flie = sorted(the_flie)  # 把獲取的資料排序
+
             if files == 7 or files == 9:  # "平均收現日數" 和 "平均銷貨日數" 越低越好
                 pass
             else:
                 organized_the_flie.reverse()
-            if organized_the_flie == []:
-                #print('無資料：' + files_name[files])
-                p2_down_rank.append("NA")
-            else:
-                p2_down_rank.append(str(organized_the_flie.index(p2_down_targetstock) + 1) + '/' + str(len(organized_the_flie)))
+
+            p2_down_rank.append(str(organized_the_flie.index(p2_down_targetstock) + 1) + '/' + str(len(organized_the_flie)))
 
         #print('===第二部分下半部照順序的排名===')
         #print(p2_down_rank)
