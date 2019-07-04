@@ -25,7 +25,7 @@ class Crawel():
         index = dict() #以指標為key的dict, 裡面放不同公司的資料
         #樣子會是：{'毛利率':[co_id, com1, com2, com3, com4, com5], '淨利率':[同前], '殖利率':[同前], '盈餘分配率':[同前], '股利發放穩定性':[同前], '淨值比(PBR)':[同前], '本益比(PER)':[同前]}
 
-        browser = webdriver.Chrome('/Users/chanpohung/Desktop/chromedriver')
+        browser = webdriver.Chrome('/Users/hanson/Documents/爬蟲用/chromedriver')
         from bs4 import BeautifulSoup
         url = "https://goodinfo.tw/StockInfo/StockBzPerformance.asp?STOCK_ID="
         index['毛利率'] = []
